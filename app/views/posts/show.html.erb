@@ -5,7 +5,11 @@
     <p class="text-md text-justify">
         <%= @post.content%>
     </p>
-    
+    <% if @post.cover.attached? %>
+        <%= image_tag(@post.cover) %>
+    <%else%>
+        <p>no image</p>
+    <% end %>
     <p>Posted by: <%= @post.user.email %></p>
 
 </main>

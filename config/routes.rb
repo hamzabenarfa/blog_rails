@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources  :posts
   resources  :resources
   resources  :profile
-
+  
     
   root "home#index"
 end
