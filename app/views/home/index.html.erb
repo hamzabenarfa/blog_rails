@@ -1,0 +1,46 @@
+  <main class="flex flex-col ">
+  <div class=" relative  -top-20 isolate px-6 pt-14 lg:px-8  " 
+       style="
+              background-color: rgb(255, 255, 255);
+              background-image: radial-gradient(at 71% 26%, rgb(245, 245, 244) 0, transparent 94%), 
+              radial-gradient(at 72% 19%, rgb(15, 118, 110) 0, transparent 10%), 
+              radial-gradient(at 86% 39%, rgb(28, 25, 23) 0, transparent 69%), 
+              radial-gradient(at 1% 38%, rgb(103, 232, 249) 0, transparent 35%);
+              
+              ">
+   
+    <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+      <div class="hidden sm:mb-8 sm:flex sm:justify-center">
+      </div>
+      <div data-controller="hello"></div>
+     
+      <div class="text-center">
+        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Welcome to Hamza's blog - Where Ideas Take Flight!</h1>
+        <p  class="mt-6 text-lg leading-8 text-gray-600">Dive into a world where curiosity meets creativity, and inspiration knows no bounds. Our blog is your gateway to a universe of captivating content, crafted to ignite your imagination and fuel your passions.</p>
+        <div class="mt-10 flex items-center justify-center gap-x-6 ">
+          <%= link_to "Get started", new_user_registration_path , class:(" rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600") %>
+          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Read more <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<div class="flex flex-col items-center justify-center gap-2 ">
+
+<%@posts.each do |post|%>
+
+<div class="flex flex-col bg-white shadow-md gap-2 p-6 rounded-xl max-w-2xl ">
+
+    <h2 class="text-2xl font-medium mr-1"><%= link_to  post.title, post %></h2>
+
+    <p class="text-md">
+         <%= truncate(post.content, length: 400) %>
+    </p>
+</div>
+
+<% end %>
+</div>
+
+</main>   
+

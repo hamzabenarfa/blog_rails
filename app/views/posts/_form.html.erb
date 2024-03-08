@@ -1,0 +1,27 @@
+<%= form_with model: post do |form| %>
+  <% if form.object.errors.any? %>
+    <div class="bg-red-100 text-red-700 p-2 mb-4 rounded-md">
+      <% form.object.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+    
+  <div class="mb-4">
+    <%= form.label :title, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :title, class: "mt-1 p-2 w-full rounded-md border border-gray-300" %>
+  </div>
+    
+
+  <div class="mb-4 h-full w-full">
+    <%= form.label :content, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.rich_text_area :content %>
+  </div>
+    
+  <div class="mb-4">
+    <%= form.label :cover, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :cover, class: "mt-1 p-2 w-full  rounded-md border border-gray-300" %>
+  </div>
+  
+  <%= form.button 'update', class: "bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600" %>
+<% end %>

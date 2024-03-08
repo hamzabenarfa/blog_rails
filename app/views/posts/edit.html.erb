@@ -1,0 +1,12 @@
+<main class="mt-8 flex flex-col items-center justify-center">
+    <div class=" max-w-2xl">
+        <h1 class="text-3xl text-left p-1 ">Edit blog posts</h1>
+  
+
+        <%= render partial: "form", locals:{post:@post} %>
+
+        <%= button_to "Delete", @post, method: :delete, data:{turbo_confirm:'Are you sure?'},
+                        class: "bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md" %>
+
+    </div>
+</main>
