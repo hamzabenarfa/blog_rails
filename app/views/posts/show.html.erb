@@ -4,13 +4,20 @@
         <br>
     </h1>
     
+    <div class="flex flex-row gap-1 justify-between">
+        <% if user_signed_in? && current_user == @post.user %>
+                <%= link_to 'Edit', edit_post_path(@post), 
+                    class: ' p-2 px-6 rounded-xl font-semibold bg-red-300 hover:bg-red-400 ' %>
+        <% end %>
 
-    <button data-controller="copy-url" data-action="click->copy-url#copy"
-            class="p-2 bg-blue-300 rounded-xl textbold text-white hover:bg-blue-400"
+    <button data-controller="copy-url" 
+            data-action="click->copy-url#copy"
+            class="p-2 px-6  bg-slate-300 rounded-xl font-semibold text-black hover:bg-slate-400"
             data-url="<%= post_url(@post)%>">
-        Copy Post URL
+        Copy URL
     </button>
 
+    </div>
     <p class="text-md text-justify">
         <%= @post.content%>
     </p>

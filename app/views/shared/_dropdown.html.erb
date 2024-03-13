@@ -1,22 +1,22 @@
 <div data-controller="dropdown" class="relative">
-  <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-   
-    <%#=  current_user.email[0.. current_user.email.index('@')-1]%>
-
-     <%= image_tag("user.svg", class: "h-8 w-auto text-gray-400") %>
+  <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="flex items-center focus:outline-none">
+    <span class="hidden sm:inline-block mr-2 text-gray-400">
+      <%#=  current_user.email[0.. current_user.email.index('@')-1]%>
+    </span>
+    <%= image_tag("user.svg", class: "h-8 w-auto text-gray-400") %>
   </button>
 
-  <div
-    data-dropdown-target="menu"
-    class="hidden transition transform origin-top-right absolute right-0"
+  <div data-dropdown-target="menu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg z-10" 
     data-transition-enter-from="opacity-0 scale-95"
     data-transition-enter-to="opacity-100 scale-100"
     data-transition-leave-from="opacity-100 scale-100"
     data-transition-leave-to="opacity-0 scale-95"
   >
-    
-       <%= link_to "write", new_post_path  %>
-       <%= link_to "Setting",edit_user_registration_path%>
-       <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+    <%= link_to "Write", new_post_path, 
+        class: "block px-4 py-2 text-sm text-gray-700 font-semibold hover:bg-gray-100" %>
+    <%= link_to "Setting", edit_user_registration_path, 
+        class: "block px-4 py-2 text-sm text-gray-700 font-semibold hover:bg-gray-100" %>
+    <%= button_to "Logout", destroy_user_session_path, method: :delete, 
+        class: "block w-full text-left px-4 py-2 text-sm text-gray-700 font-semibold hover:bg-gray-100" %>
   </div>
 </div>

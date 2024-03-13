@@ -11,6 +11,7 @@ class Post < ApplicationRecord
     validates :content, presence: true
     validates :cover, presence: true
 
+    scope :sorted , -> { order(published_at: :desc) }
     scope :draft , -> { where(published_at: nil) }
     scope :published, -> { where("published_at <= ?", Time.current) }
     scope :scheduled, -> { where("published_at > ?", Time.current) }

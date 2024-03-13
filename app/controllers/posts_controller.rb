@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
     
     def index
-        posts = user_signed_in? ? current_user.posts : Post.published
+        posts = user_signed_in? ? current_user.posts.sorted : Post.published.sorted
         render "posts/index", assigns: {posts: posts}
     end
 
