@@ -1,16 +1,20 @@
-// app/javascript/controllers/copy_url_controller.js
-import { Controller } from "stimulus";
+import { Controller } from "@hotwired/stimulus"
 
+// Connects to data-controller="copy-url"
 export default class extends Controller {
-  connect() {
-    console.log("CopyUrlController initialized");
-  }
+  copy(event) {
+    event.preventDefault();
+    const button = event.currentTarget;
+    const url = button.dataset.url;
 
-  copy() {
-    console.log("Button clicked");
-    const url = window.location.href;
-    navigator.clipboard.writeText(url).then(() => {
-      alert("URL copied to clipboard!");
-    });
+    navigator.clipboard.writeText(url)
+      .then(() => {
+        console.log('URL copied to clipboard:', url);
+        alert('URL copied to clipboard: ' + url);
+      })
+      .catch(err => {
+        console.error('Failed to copy URL: ', err);
+        alert('Failed to copy URL: ' + err);
+      });
   }
 }

@@ -2,22 +2,26 @@
 
 <%@posts.each do |post|%>
 
-<div class="flex flex-row justify-between w-full bg-white shadow-md gap-2 p-6 rounded-xl max-w-2xl ">
 
-<div class="flex flex-col">
+<div class="flex flex-col justify-between w-full bg-white shadow-md gap-2 p-6 rounded-xl max-w-2xl ">
+    <div class="flex flex-row justify-between ">
+        <div class="flex flex-col">
+            <h2 class="text-2xl font-medium mr-1"><%= link_to  post.title, post %></h2>
+            <p class="text-md">
+                <%= truncate(post.content.to_plain_text, length: 400) %>
+            </p>
+        </div>
 
-    <h2 class="text-2xl font-medium mr-1"><%= link_to  post.title, post %></h2>
+        <div class="w-20">
+            <%= image_tag(post.cover)  if post.cover.attached? %>
+        </div>
+    </div>
 
-    <p class="text-md">
-         <%= truncate(post.content.to_plain_text, length: 400) %>
-    </p>
-</div>
-<div class="w-20 " >
-
-    <%= image_tag(post.cover)  if post.cover.attached? %>
-
-</div>
-
+    <div>
+        <% if post.draft?%>
+            <div class="bg-gray-100 text-gray-900 p-2 rounded-xl"> Draft</div>
+        <%end%>
+    </div>
 
 </div>
 

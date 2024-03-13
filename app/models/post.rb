@@ -14,14 +14,7 @@ class Post < ApplicationRecord
     scope :draft , -> { where(published_at: nil) }
     scope :published, -> { where("published_at <= ?", Time.current) }
     scope :scheduled, -> { where("published_at > ?", Time.current) }
-    private
-
-    def correct_content_type
-        if cover.attached? && !cover.content_type.in?(%w(image/png image/jpg image/jpeg))
-         errors.add(:cover, 'must be a PNG, JPG, or JPEG image')
-        end
-    end
-
+   
     def draft? 
         published_at.nil?
     end
@@ -34,4 +27,12 @@ class Post < ApplicationRecord
         published_at.present? && published_at > Time.current
     end
     
+    private
+
+    def correct_content_type
+        if cover.attached? && !cover.content_type.in?(%w(image/png image/jpg image/jpeg))
+         errors.add(:cover, 'must be a PNG, JPG, or JPEG image')
+        end
+    end
+
 end

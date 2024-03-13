@@ -4,7 +4,12 @@
         <br>
     </h1>
     
-    <%= render 'shared/copy_url_button'%>
+
+    <button data-controller="copy-url" data-action="click->copy-url#copy"
+            class="p-2 bg-blue-300 rounded-xl textbold text-white hover:bg-blue-400"
+            data-url="<%= post_url(@post)%>">
+        Copy Post URL
+    </button>
 
     <p class="text-md text-justify">
         <%= @post.content%>
