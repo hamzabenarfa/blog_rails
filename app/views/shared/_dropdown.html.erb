@@ -1,0 +1,22 @@
+<div data-controller="dropdown" class="relative">
+  <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
+   
+    <%#=  current_user.email[0.. current_user.email.index('@')-1]%>
+
+     <%= image_tag("user.svg", class: "h-8 w-auto text-gray-400") %>
+  </button>
+
+  <div
+    data-dropdown-target="menu"
+    class="hidden transition transform origin-top-right absolute right-0"
+    data-transition-enter-from="opacity-0 scale-95"
+    data-transition-enter-to="opacity-100 scale-100"
+    data-transition-leave-from="opacity-100 scale-100"
+    data-transition-leave-to="opacity-0 scale-95"
+  >
+    
+       <%= link_to "write", new_post_path  %>
+       <%= link_to "Setting",edit_user_registration_path%>
+       <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+  </div>
+</div>

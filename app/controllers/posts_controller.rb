@@ -3,7 +3,7 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:show, :edit, :update, :destroy]
     
     def index
-        posts = Post.all
+        posts = user_signed_in? ? current_user.posts : Post.published
         render "posts/index", assigns: {posts: posts}
     end
 
@@ -26,9 +26,12 @@ class PostsController < ApplicationController
     end
 
     def edit
+        @post = Post.find(params[:id])
+        authorize_user(@post)
     end
 
     def update
+        authorize_user(@post)
         if @post.update(post_params)
             redirect_to @post, notice: "Post was successfully updated"
         else
@@ -45,11 +48,15 @@ class PostsController < ApplicationController
     private
 
     def post_params 
-        params.require(:post).permit(:title, :content, :cover)
+        params.require(:post).permit(:title, :content, :cover, :published_at)
     end 
 
     def set_post
-        @post = Post.find(params[:id])
+        if user_signed_in?
+          @post = Post.find(params[:id])
+        else
+          @post = Post.published.find(params[:id])
+        end  
     rescue ActiveRecord::RecordNotFound
         flash[:alert] = " post not found"
         redirect_to root_url
@@ -58,6 +65,13 @@ class PostsController < ApplicationController
     def authenticate_user
         unless user_signed_in?
           redirect_to new_user_session_path
+        end
+    end
+
+    def authorize_user(post)
+        unless current_user == post.user
+          flash[:alert] = "You are not authorized to perform this action."
+          redirect_to root_path
         end
     end
 end

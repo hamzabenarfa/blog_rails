@@ -1,4 +1,4 @@
-<button>
-    <span class="glyphicon glyphicon-link"></span>
-    <%= link_to 'Copy URL', '#', class: 'copy-url-button', data: { url: url } %>
-</button>
+<!-- app/views/your_view.html.erb -->
+<div data-controller="copy-url" class=" text-center p-4 bg-red-100 rounded-xl hover:cursor-pointer">
+  <%= button_tag "Copy URL", data: { action: "copy-url#copy" } %>
+</div>
