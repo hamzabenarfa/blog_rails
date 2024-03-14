@@ -1,7 +1,9 @@
 <div data-controller="dropdown" class="relative">
   <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="flex items-center focus:outline-none">
     <span class="hidden sm:inline-block mr-2 text-gray-400">
-      <%#=  current_user.email[0.. current_user.email.index('@')-1]%>
+      <% if @user.present? && @user.persisted? && @user.profile_picture.attached? %>
+        <%= image_tag @user.profile_picture %>
+      <% end %>
     </span>
     <%= image_tag("user.svg", class: "h-8 w-auto text-gray-400") %>
   </button>

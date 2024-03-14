@@ -3,10 +3,10 @@ class Post < ApplicationRecord
 
     has_many :resources, dependent: :destroy
     has_rich_text :content
-    
     has_one_attached :cover
+    has_many :comments, dependent: :destroy
+    
     validate :correct_content_type
-
     validates :title, presence: true
     validates :content, presence: true
     validates :cover, presence: true

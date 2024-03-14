@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     end
 
     def show
+        @comments = @post.comments.order(created_at: :desc)
     rescue ActiveRecord::RecordNotFound
         redirect_to posts_path
     end

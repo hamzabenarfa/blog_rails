@@ -22,6 +22,7 @@ gem "jbuilder"
 
 gem "devise"
 gem "image_processing", ">= 1.2"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -42,7 +43,9 @@ end
 
 group :development do
   gem "web-console"
+  gem 'letter_opener'
 
+  gem 'letter_opener_web', '~> 2.0'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
