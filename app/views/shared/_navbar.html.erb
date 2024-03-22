@@ -25,18 +25,17 @@
         <div class="hidden sm:ml-6 sm:block pt-2">
           <div class="flex space-x-4">
             <a href="/" class="text-gray-400 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium">Home</a>
-            <a href="#" class="text-gray-400 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium">Features</a>
+            <a href="/posts" class="text-gray-400 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium">Features</a>
             <a href="#" class="text-gray-400 hover:text-gray-900 rounded-md px-3 py-2 text-sm font-medium">Trending</a>
           </div>
         </div>
       </div>
       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <div class="relative ml-3 pt-2">
-          <% if user_signed_in?%>
-            <%= link_to current_user.email[0.. current_user.email.index('@')-1],edit_user_registration_path%>
-            <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+        <div class="flex gap-2  ml-3 pt-2 ">
+          <% if current_user %>
+         
+          <%= render 'shared/dropdown'%> 
           <% else %>
-            <%#= link_to "Sign up", new_user_registration_path %>
             <div>
             <%= link_to "Login", new_user_session_path,class:'text-gray-700 hover:text-gray-900 rounded-md px-3 py-2 text-md font-bold hover:cursor-pointer' %>
             </div>

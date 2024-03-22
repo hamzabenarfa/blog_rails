@@ -1,0 +1,25 @@
+<div id="comment_<%= comment.id %>" data-controller="turbo-stream">
+  <div class="flex flex-col space-y-4 border border-gray-200 p-4 rounded-lg shadow-md">
+    <div class="flex items-center justify-between">
+      <div class="text-sm font-medium text-gray-600">
+        <%= comment.user.email %>
+      </div>
+      <div class="text-xs text-gray-400">
+        Posted <%= time_ago_in_words(comment.created_at) %> ago
+      </div>
+    </div>
+
+    <% if current_user == comment.user %>
+      <div class="flex items-center space-x-2">
+        <%= button_to "Delete", [@post, comment], class: "bg-red-500 text-white py-1 px-3 rounded-md hover:bg-red-600 focus:outline-none focus:bg-red-600", method: :delete %>
+        <hr class="flex-grow bg-gray-300">
+      </div>
+    <% end %>
+
+    <div class="text-gray-800" >
+      <%= comment.body %>
+    </div>
+
+  </div>
+
+</div>

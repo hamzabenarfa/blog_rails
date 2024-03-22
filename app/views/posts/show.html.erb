@@ -1,9 +1,48 @@
 <main class="flex flex-col justify-center gap-8 mx-6 md:mx-auto max-w-2xl mt-8">
-    <h1 class="text-2xl font-bold mr-1">
-        <%= @post.title %>
-    </h1>
-    <p class="text-md text-justify">
-        <%= @post.content%>
-    </p>
-</main>
+  <h1 class="text-2xl font-bold mr-1">
+    <%= @post.title %>
+    <br>
+  </h1>
+    <%= link_to "Created by: #{@post.user.full_name}" ,"/#{@post.user.slug}" ,class:' underline' %>
 
+  <div class="flex flex-row gap-1 justify-between">
+    <% if user_signed_in? && current_user == @post.user %>
+      <%= link_to 'Edit', edit_post_path(@post), class: ' p-2 px-6 rounded-xl font-semibold bg-red-300 hover:bg-red-400 ' %>
+    <% end %>
+
+    <button data-controller="copy-url" 
+            data-action="click->copy-url#copy"
+            class="p-2 px-6  bg-slate-300 rounded-xl font-semibold text-black hover:bg-slate-400"
+            data-url="<%= post_url(@post)%>">
+      Copy URL
+    </button>
+  </div>
+  
+  <p class="text-md text-justify">
+    <%= @post.content %>
+  </p>
+  
+  <% if @post.cover.attached? %>
+    <%= image_tag(@post.cover) %>
+  <% else %>
+    <p>no image</p>
+  <% end %>
+  
+
+
+  <p></p>
+
+  <%= render partial: "likes", locals: {post: @post} %>
+
+  <hr>
+  
+  <div class="container flex flex-col gap-4">
+    <%= render 'comments/form', post: @post %>
+
+    <div id="comments_stream">
+      <% @comments.each do |comment| %>
+        <%= render 'comments/comment', post: @post, comment: comment %>
+      <% end %>
+    </div>
+  </div>
+</main>
