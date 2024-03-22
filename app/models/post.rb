@@ -5,6 +5,7 @@ class Post < ApplicationRecord
     has_rich_text :content
     has_one_attached :cover
     has_many :comments, dependent: :destroy
+    has_many :likes
     
     validate :correct_content_type
     validates :title, presence: true
@@ -26,6 +27,18 @@ class Post < ApplicationRecord
 
     def scheduled?
         published_at.present? && published_at > Time.current
+    end
+
+    def liked_by?(user)
+        likes.where(user: user).any?
+    end
+
+    def like(user)
+        likes.where(user: user).first_or_create
+    end
+
+    def unlike(user)
+        likes.where(user: user).destroy_all
     end
     
     private

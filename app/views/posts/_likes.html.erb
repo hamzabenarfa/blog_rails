@@ -1,0 +1,10 @@
+<%= tag.div id:dom_id(post, :likes) , class:"flex gap-2 justify-start items-center" do %>
+<%= button_to  post_like_path(post),method: :patch, class:"flex items-center bg-gray-200 text-gray-700 font-medium py-2 px-4 rounded-lg hover:bg-gray-300 focus:outline-none focus:bg-gray-300" do %>
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+  </svg>
+    <%= post.liked_by?(current_user) ? "Unlike" : "Like" %>
+<% end %>
+<span class="ml-2 text-gray-600"><%= post.like_count %> Likes</span>
+
+<% end %>

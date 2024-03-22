@@ -1,7 +1,12 @@
+
 <div class="flex flex-col items-center justify-center gap-2 ">
 
+<h1 class="text-lg">
+    <%= @user.full_name%> Posts
+</h1>
 
-<%@posts.each do |post|%>
+
+<%@user.posts.each do |post|%>
 
 
 <div class="flex flex-col justify-between w-full bg-white shadow-md gap-2 p-6 rounded-xl max-w-2xl ">
